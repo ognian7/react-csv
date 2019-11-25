@@ -309,7 +309,9 @@ var jsons2arrays = exports.jsons2arrays = function jsons2arrays(jsons, headers) 
 
 var getHeaderValue = exports.getHeaderValue = function getHeaderValue(property, obj) {
   var foundValue = property.replace(/\[([^\]]+)]/g, ".$1").split(".").reduce(function (o, p, i, arr) {
-    if (o[p] === undefined) {
+    if (o === null) {
+      return "";
+    } else if (o[p] === undefined) {
       arr.splice(1);
     } else {
       return o[p];
